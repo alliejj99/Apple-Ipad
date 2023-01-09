@@ -81,3 +81,20 @@ function hideSearch() {
 searchStarterEl.addEventListener("click", showSearch);
 searchCloserEl.addEventListener("click", hideSearch);
 searchShadowEl.addEventListener("click", hideSearch);
+
+/* 요쇼의 가시성 관찰 */
+// 화면에서 요소가 안보이면 이벤트는 발생하지 않으나
+// 보이기 시작하면 show 클래스를 추가한다.
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      return;
+    }
+    entry.target.classList.add("show");
+  });
+});
+
+const infoEls = document.querySelectorAll(".info");
+infoEls.forEach((el) => {
+  io.observe(el); // 관찰의 대상
+});
