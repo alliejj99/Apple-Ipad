@@ -175,3 +175,7 @@ navigations.forEach((nav) => {
   `;
   navigationsEl.append(mapEl);
 });
+
+/* 날짜 정보 표시 */
+const thisYearEl = document.querySelector("span.this-year");
+thisYearEl.textContent = new Date().getFullYear();
