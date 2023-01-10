@@ -2,6 +2,7 @@
 // 사용하려면 최상단 html에 type="module"을 추가해야한다.
 // <script defer type="module" src="./js/main.js"></script>
 import ipads from "../data/ipads.js";
+import navigations from "../data/navigations.js";
 
 /* Drop Down Menu */
 const basketStarterEl = document.querySelector("header .basket-starter");
@@ -146,4 +147,31 @@ ipads.forEach((ipad) => {
 `;
 
   itemsEl.append(itemEl);
+});
+
+/* JS 데이터 기반으로 한 네비게이션 표현 */
+const navigationsEl = document.querySelector("footer .navigations");
+navigations.forEach((nav) => {
+  const mapEl = document.createElement("div");
+  mapEl.classList.add("map");
+
+  let mapList = "";
+  nav.maps.forEach((map) => {
+    mapList += /* html */ `
+      <li>
+        <a href="${map.url}">${map.name}</a>
+      </li>
+    `;
+  });
+
+  mapEl.innerHTML = /* html */ `
+  <h3>
+    <span class="text">${nav.title}</span>
+  </h3>
+
+  <ul>
+    ${mapList}
+  </ul>
+  `;
+  navigationsEl.append(mapEl);
 });
