@@ -87,6 +87,26 @@ searchStarterEl.addEventListener("click", showSearch);
 searchCloserEl.addEventListener("click", hideSearch);
 searchShadowEl.addEventListener("click", hideSearch);
 
+/* header menu toggle */
+const menuStarterEl = document.querySelector("header .menu-starter");
+
+function playScroll() {
+  document.documentElement.classList.remove("fixed");
+}
+function stopScroll() {
+  document.documentElement.classList.add("fixed");
+}
+
+menuStarterEl.addEventListener("click", () => {
+  if (headerEl.classList.contains("menuing")) {
+    headerEl.classList.remove("menuing");
+    playScroll();
+  } else {
+    headerEl.classList.add("menuing");
+    stopScroll();
+  }
+});
+
 /* 요쇼의 가시성 관찰 */
 // 화면에서 요소가 안보이면 이벤트는 발생하지 않으나
 // 보이기 시작하면 show 클래스를 추가한다.
