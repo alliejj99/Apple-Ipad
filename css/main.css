@@ -807,7 +807,70 @@ main {
   transform: translate(96px, 639px);
 }
 
-/* SPRITE */
+/* Accessories */
+.accessories {
+  margin-top: 195px;
+}
+.accessories h1 {
+  width: 550px;
+  height: 343px;
+  background-image: url("../images/accessories_headline.png");
+  margin: 0 auto;
+}
+.accessories .figures {
+  height: 1021px;
+  margin-top: 34px;
+}
+.accessories figure {
+  transform: translate(-24px, 0);
+}
+.accessories figcaption .caption-memo {
+  width: 169px;
+  height: 41px;
+  background-image: url("../images/accessories_caption_memo.png");
+  transform: translate(790px, -52px);
+}
+.accessories figcaption .caption-supports {
+  width: 200px;
+  height: 70px;
+  background-image: url("../images/accessories_caption_supports.png");
+  transform: translate(163px, 821px);
+}
+.accessories .infos {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* iPadOS */
+.ipados {
+  margin-top: 212px;
+}
+.ipados h1 {
+  width: 530px;
+  height: 400px;
+  margin: 0 auto;
+  background-image: url("../images/ipados_headline.png");
+}
+.ipados .infos {
+  margin-top: 44px;
+  align-items: flex-end;
+}
+.ipados .figures {
+  display: flex;
+  height: 782px;
+  border: 4px solid;
+}
+.ipados .figures > div {
+  border: 4px solid red;
+  flex-grow: 1;
+}
+.ipados figure {
+}
+.ipados figcaption {
+}
+
+/* ANIMATION ++ SPRITE */
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
