@@ -1,6 +1,6 @@
 // import = module 이므로,
-// 사용하려면 최상단 html에 type="module"을 추가해야한다.
-// <script defer type="module" src="./js/main.js"></script>
+// 사용하려면 최상단 html에 type='module'을 추가해야한다.
+// <script defer type='module' src='./js/main.js'></script>
 import ipads from "../data/ipads.js";
 import navigations from "../data/navigations.js";
 
@@ -44,7 +44,7 @@ const searchDelayEls = [...searchWrapEl.querySelectorAll("li")]; // 전개 연�
 // 검색 아이콘 클릭 => 검색창 나타남
 function showSearch() {
   headerEl.classList.add("searching");
-  document.documentElement.classList.add("fixed"); // htmlElement add class "fixed"
+  document.documentElement.classList.add("fixed"); // htmlElement add class 'fixed'
 
   // 기본메뉴의 애니메이션
   headerMenuEls.reverse().forEach((el, index) => {
@@ -199,21 +199,21 @@ ipads.forEach((ipad) => {
 
   let colorList = "";
   ipad.colors.forEach((color) => {
-    colorList += `<li style="background-color:${color};"></li>`;
+    colorList += `<li style='background-color:${color};'></li>`;
   });
 
   itemEl.innerHTML = /* html */ `
-    <div class="thumbnail"> 
-      <img src="${ipad.thumbnail}" alt="${ipad.name}" />
+    <div class='thumbnail'> 
+      <img src='${ipad.thumbnail}' alt='${ipad.name}' />
     </div>
-    <ul class="colors">
+    <ul class='colors'>
       ${colorList}
     </ul>
-    <h3 class="name">${ipad.name}</h3>
-    <p class="tagline">${ipad.tagline}</p>
-    <p class="price">₩${ipad.price.toLocaleString("en-US")}부터</p>
-    <button class="btn">구입하기</button>
-    <a href="${ipad.url}" class="link">더 알아보기</a>
+    <h3 class='name'>${ipad.name}</h3>
+    <p class='tagline'>${ipad.tagline}</p>
+    <p class='price'>₩${ipad.price.toLocaleString("en-US")}부터</p>
+    <button class='btn'>구입하기</button>
+    <a href='${ipad.url}' class='link'>더 알아보기</a>
 `;
 
   itemsEl.append(itemEl);
@@ -229,14 +229,15 @@ navigations.forEach((nav) => {
   nav.maps.forEach((map) => {
     mapList += /* html */ `
       <li>
-        <a href="${map.url}">${map.name}</a>
+        <a href='${map.url}'>${map.name}</a>
       </li>
     `;
   });
 
   mapEl.innerHTML = /* html */ `
   <h3>
-    <span class="text">${nav.title}</span>
+    <span class='text'>${nav.title}</span>
+  <span class="icon">+</span>
   </h3>
 
   <ul>
@@ -249,3 +250,12 @@ navigations.forEach((nav) => {
 /* 날짜 정보 표시 */
 const thisYearEl = document.querySelector("span.this-year");
 thisYearEl.textContent = new Date().getFullYear();
+
+/* mobile footer 아코디언메뉴 */
+const mapEls = document.querySelectorAll("footer .navigations .map");
+mapEls.forEach((el) => {
+  const h3El = el.querySelector("h3");
+  h3El.addEventListener("click", () => {
+    el.classList.toggle("active");
+  });
+});
