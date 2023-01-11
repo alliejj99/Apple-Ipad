@@ -84,8 +84,20 @@ function hideSearch() {
 }
 
 searchStarterEl.addEventListener("click", showSearch);
-searchCloserEl.addEventListener("click", hideSearch);
+searchCloserEl.addEventListener("click", (event) => {
+  event.stopPropagation(); // 버블링 방지
+  hideSearch();
+});
 searchShadowEl.addEventListener("click", hideSearch);
+
+//
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 740) {
+    headerEl.classList.remove("searching");
+  } else {
+    headerEl.classList.add("searching--mobile");
+  }
+});
 
 /* header menu toggle */
 const menuStarterEl = document.querySelector("header .menu-starter");
@@ -100,12 +112,50 @@ function stopScroll() {
 menuStarterEl.addEventListener("click", () => {
   if (headerEl.classList.contains("menuing")) {
     headerEl.classList.remove("menuing");
+    searchInputEl.value = "";
     playScroll();
   } else {
     headerEl.classList.add("menuing");
     stopScroll();
   }
 });
+
+/* mobile: Header Search */
+const searchTextFieldEl = document.querySelector("header .textfield");
+const searchCancleEl = document.querySelector("header .search-canceler");
+
+searchTextFieldEl.addEventListener("click", () => {
+  headerEl.classList.add("searching--mobile");
+  searchInputEl.focus();
+});
+searchCancleEl.addEventListener("click", () => {
+  headerEl.classList.remove("searching--mobile");
+});
+
+// nav mobile
+const navEl = document.querySelector("nav");
+const navMenuToggleEl = navEl.querySelector(".menu-toggler");
+const navMenuShadowEl = navEl.querySelector(".shadow");
+
+function showNevMenu() {
+  navEl.classList.add("menuing");
+}
+function hideNevMenu() {
+  navEl.classList.remove("menuing");
+}
+
+navMenuToggleEl.addEventListener("click", () => {
+  if (navEl.classList.contains("menuing")) {
+    hideNevMenu();
+  } else {
+    showNevMenu();
+  }
+});
+navEl.addEventListener("click", (event) => {
+  event.stopPropagation();
+});
+navMenuShadowEl.addEventListener("click", hideNevMenu);
+window.addEventListener("click", hideNevMenu);
 
 /* 요쇼의 가시성 관찰 */
 // 화면에서 요소가 안보이면 이벤트는 발생하지 않으나
